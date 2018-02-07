@@ -1,0 +1,163 @@
+//******************************************************************************
+// redyllowgreen.java               Author:Tulsi Kuber
+//
+// Demonstrates the use of JFrame and JPanel.
+//*****************************************************************************
+package redyellowgreen;
+
+import javax.swing.*;
+
+/**
+ * Class TrafficLights - At the click of a button, change the traffic lights 
+ * 
+ * @author Tulsi Kuber
+ */
+
+public class redYellowGreen {
+//------------------------------------------------------------------------------
+//  Creates the main frame of the program
+//------------------------------------------------------------------------------
+    public static void main(String[] args)
+    {
+        JFrame frame = new JFrame("Traffic Light");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        JPanel panel = new JPanel();
+        
+        //add panel to the frame
+        frame.getContentPane().add(panel);
+        frame.pack();
+        frame.setVisible(true);
+    }
+}
+//******************************************************************************
+// lightpanel.java          author: Tulsi Kuber
+//
+// Write an application that draws a traffic light and uses a push button to
+// change the state of the light..
+//******************************************************************************
+package lightpanel;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class lightpanel extends JPanel 
+    {
+    public light panel()
+        {
+        setPreferredSize(new Dimension(600,600));
+        }
+    }
+
+public class lightpanel implements ActionListener
+    {
+
+    private JButton WAIT, STOP, GO;
+    private boolean clickWAIT = false;
+    private boolean clickSTOP = false;
+    private boolean clickGO = false;
+    private int carX = 200;
+
+    public void init()
+    {
+        setLayout( new FlowLayout()); // changes  layout to FlowLayout
+
+        WAIT = new JButton ("WAIT"); //adds WAIT label
+        WAIT.setForeground(Color.yellow); //changes label to yellow
+        add (WAIT); //adds WAIT JBUtton to screen
+        WAIT.addActionListener(this); 
+
+        GO = new JButton ("GO"); //adds GO label
+        GO.setForeground(Color.green); //changes label to green
+        add (GO); //adds GO button to screen
+        GO.addActionListener(this);
+
+        STOP = new JButton ("STOP"); //adds STOP label
+        STOP.setForeground(Color.red); //changes label to red
+        add (STOP); //adds STOP JButton to screen 
+        STOP.addActionListener(this); 
+    }
+
+    public void start()
+    {
+        // code runs each time page is visited
+    }
+
+    public void stop()
+    {
+        // code stop execution
+    }
+
+    public void paint(Graphics g)
+    {
+        //red circle appears when STOP is pressed
+        if (clickSTOP == true);
+        {
+        g.drawOval(60, 100, 30, 30); 
+        g.setColor(Color.red);
+        g.fillOval(60, 100, 30, 30);
+        clickSTOP = false;
+        }
+
+        //yellow circle appears when STOP is pressed
+        if (clickWAIT == true); 
+        {
+        g.setColor(Color.black);
+        g.drawOval(60, 150, 30, 30);
+        g.setColor(Color.yellow);
+        g.fillOval(60, 150, 30, 30); 
+        clickWAIT = false;
+        }
+
+        //green circle appears when STOP is pressed 
+        if (clickGO == true);
+        {
+        g.setColor(Color.black);
+        g.drawOval(60, 200, 30, 30);
+        g.setColor(Color.green);
+        g.fillOval(60, 200, 30, 30); 
+        clickGO = false;
+        }
+    }
+
+
+     public void actionPerformed(ActionEvent event)
+    {
+       /*
+        * Links the JButtons to sequences so that lights appear
+        */
+       if(event.getSource() == GO) //green reappears if GO is pressed
+       {
+           clickGO = true;
+           carX -=15; 
+           repaint();
+           }
+           if (event.getSource() == WAIT) //yellow reappears if WAIT is clicked
+           {
+               clickWAIT = true;
+               repaint();
+               }
+               if (event.getSource() == STOP) //red reappears if STOP is clicked
+               {
+                   clickSTOP = true;
+                   repaint();
+                   }
+
+    } 
+     
+        private void setLayout(FlowLayout flowLayout) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        private void add(JButton WAIT) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        private void repaint() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }  
+
+
+
